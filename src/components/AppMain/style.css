@@ -1,0 +1,26 @@
+#app {
+    background-color: whitesmoke;
+    font-family: Avenir,Helvetica,Arial,sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.news-container {
+    width: 70%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-items {
+    display: flex;
+    margin: 0 auto;
+    width: 70%;
+    max-width: 1200px;
+}
+
+.news-items {
+    background-color: white;
+}
+
+.fv-footer {
+    margin-top: 30px;
+}

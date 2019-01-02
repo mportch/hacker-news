@@ -1,0 +1,25 @@
+<fvMain id="app">
+    <fvContent>
+        <fvHeader>
+            <div class="header-items">
+                <fvButton class="fv-size-sm">Top</fvButton>
+                <fvButton class="fv-size-sm">New</fvButton>
+                <span class="fv-padding-start" />
+                <fvInput class="fv-size-sm fv-grow" placeholder="Enter query..."></fvInput>
+                <span class="fv-padding-start" />
+                <fvButton class="fv-size-sm">Search</fvButton>
+            </div>
+        </fvHeader>
+        <div class="news-container">
+            <div class="news-controls fv-padding fv-text-center">
+                <fvPagination class="fv-size-sm" v-model="pages" />
+            </div>
+            <div class="news-items">
+                <news-item v-for="story in stories" :data="story"></news-item>
+            </div>
+        </div>
+        <fvFooter>
+            <!-- Footer Content -->
+        </fvFooter>
+    </fvContent>
+</fvMain>

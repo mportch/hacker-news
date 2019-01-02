@@ -1,0 +1,17 @@
+<div class="news-item">
+    <div class="news-id">
+        <span class="id-number">{{ data.id }}</span>
+    </div>
+    <div class="news-content">
+        <div class="top">
+            <span class="title"><a :href="data.url" target="_blank">{{ data.title }} </a></span>
+            <span class="host"> ({{ data.host }})</span>
+        </div>
+        <div class="bottom">
+            <span class="meta">posted 10 hours ago by <a href="#">{{ data.author }}</a> | {{ data.comments }} comments</span>
+        </div>
+    </div>
+    <div class="news-karma">
+        <span class="karma-number">{{ data.points }}</span>
+    </div>
+</div>
