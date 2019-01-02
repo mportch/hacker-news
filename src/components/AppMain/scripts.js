@@ -11,17 +11,51 @@ export default {
     },
     data () {
         return {
-            items: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18],
+            page: 1,
             pages: undefined,
-            slides: ['Top', 'New']
+            tab: 0,
+            timeframe: 0,
+            timeframes: [
+                {
+                    text: 'Day',
+                    value: 0
+                },
+                {
+                    text: 'Week',
+                    value: 1
+                },
+                {
+                    text: 'Month',
+                    value: 2
+                },
+                {
+                    text: 'Year',
+                    value: 3
+                },
+                {
+                    text: 'All',
+                    value: 4
+                },
+            ]
+        }
+    },
+    watch: {
+        tab: function () {
+            this.updateStories();
+        },
+        timeframe: function () {
+            this.updateStories();
         }
     },
     methods: {
-        getStories() {
-            this.$store.dispatch('main/updateStories');
+        updateStories() {
+            this.$store.dispatch('main/updateStories', {
+                tab: this.tab,
+                timeframe: this.timeframe
+            });
         }
     },
     mounted() {
-        this.getStories();
+        this.updateStories();
     }
 }

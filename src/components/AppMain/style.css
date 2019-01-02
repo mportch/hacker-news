@@ -17,6 +17,12 @@
     max-width: 1200px;
 }
 
+.news-params {
+    display: flex;
+    justify-content: right;
+    padding: 10px 0;
+}
+
 .news-items {
     background-color: white;
 }

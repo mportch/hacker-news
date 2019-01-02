@@ -2,24 +2,29 @@
     <fvContent>
         <fvHeader>
             <div class="header-items">
-                <fvButton class="fv-size-sm">Top</fvButton>
-                <fvButton class="fv-size-sm">New</fvButton>
+                <fvButton :class="`${tab === 0 ? 'fv-bg-primary' : ''} fv-size-sm`" @click="tab = 0">Top</fvButton>
+                <fvButton :class="`${tab === 1 ? 'fv-bg-primary' : ''} fv-size-sm`" @click="tab = 1">New</fvButton>
                 <span class="fv-padding-start" />
-                <fvInput class="fv-size-sm fv-grow" placeholder="Enter query..."></fvInput>
+                <fvInput class="fv-size-sm fv-grow" placeholder="Search stories..."></fvInput>
                 <span class="fv-padding-start" />
-                <fvButton class="fv-size-sm">Search</fvButton>
+                <div class="timeframe-buttons" v-if="tab === 0">
+                    <fvButton :class="`${timeframe === 0 ? 'fv-bg-info' : ''} fv-size-sm`" @click="timeframe = 0">{{ timeframes[0].text }}</fvButton>
+                    <fvButton :class="`${timeframe === 1 ? 'fv-bg-info' : ''} fv-size-sm`" @click="timeframe = 1">{{ timeframes[1].text }}</fvButton>
+                    <fvButton :class="`${timeframe === 2 ? 'fv-bg-info' : ''} fv-size-sm`" @click="timeframe = 2">{{ timeframes[2].text }}</fvButton>
+                    <fvButton :class="`${timeframe === 3 ? 'fv-bg-info' : ''} fv-size-sm`" @click="timeframe = 3">{{ timeframes[3].text }}</fvButton>
+                    <fvButton :class="`${timeframe === 4 ? 'fv-bg-info' : ''} fv-size-sm`" @click="timeframe = 4">{{ timeframes[4].text }}</fvButton>
+                    <span class="fv-padding-start" />
+                </div>
+                <fvButton class="fv-size-sm" @click="updateStories"><fa icon="redo" /></fvButton>
             </div>
         </fvHeader>
         <div class="news-container">
-            <div class="news-controls fv-padding fv-text-center">
-                <fvPagination class="fv-size-sm" v-model="pages" />
-            </div>
             <div class="news-items">
                 <news-item v-for="story in stories" :data="story"></news-item>
             </div>
+            <div class="news-controls fv-padding fv-text-center">
+                <fvPagination class="fv-size-sm" v-model="pages" />
+            </div>
         </div>
-        <fvFooter>
-            <!-- Footer Content -->
-        </fvFooter>
     </fvContent>
 </fvMain>
