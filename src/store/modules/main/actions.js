@@ -17,16 +17,18 @@ export const updateStories = ({ commit }, obj) => {
         3: Date.now() / 1000 - 365*24*60*60,
         4: 0
     };
-    API.get(`${endpointLUT[obj.tab]}?tags=story&numericFilters=created_at_i>${timeframeLUT[obj.timeframe]}`).then((response) => {
+    API.get(
+        `${endpointLUT[obj.tab]}?tags=story&numericFilters=created_at_i>${timeframeLUT[obj.timeframe]}&page=${obj.page}`)
+    .then((response) => {
         const hits = response.data.hits;
         let stories = [];
         for (let i = 0; i < hits.length; i += 1) {
             stories.push({
-                id: i + 1,
+                id: obj.page * 20 + i + 1,
                 title: hits[i].title,
                 author: hits[i].author,
                 comments: hits[i].num_comments,
-                timestamp: hits[i].created_at,
+                timestamp: hits[i].created_at_i,
                 url: hits[i].url ? hits[i].url : `https://news.ycombinator.com/item?id=${hits[i].objectID}`,
                 host: hits[i].url ? hits[i].url.split('/')[2] : 'news.ycombinator.com',
                 points: hits[i].points

@@ -11,7 +11,7 @@ export default {
     },
     data () {
         return {
-            page: 1,
+            page: 0,
             pages: undefined,
             tab: 0,
             timeframe: 0,
@@ -40,6 +40,9 @@ export default {
         }
     },
     watch: {
+        page: function () {
+            this.updateStories();
+        },
         tab: function () {
             this.updateStories();
         },
@@ -48,8 +51,12 @@ export default {
         }
     },
     methods: {
+        updatePage(page) {
+            this.page = page - 1;
+        },
         updateStories() {
             this.$store.dispatch('main/updateStories', {
+                page: this.page,
                 tab: this.tab,
                 timeframe: this.timeframe
             });

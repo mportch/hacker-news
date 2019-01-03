@@ -20,10 +20,10 @@
         </fvHeader>
         <div class="news-container">
             <div class="news-items">
-                <news-item v-for="story in stories" :data="story"></news-item>
+                <news-item v-for="story in stories" :data="story" :key="story.id"></news-item>
             </div>
             <div class="news-controls fv-padding fv-text-center">
-                <fvPagination class="fv-size-sm" v-model="pages" />
+                <fvPagination class="fv-size-sm" v-model="pages" @input="updatePage" />
             </div>
         </div>
     </fvContent>
