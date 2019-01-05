@@ -1,17 +1,18 @@
 <div class="news-item">
     <div class="news-id">
-        <span class="id-number">{{ data.id }}</span>
+        <span class="id-number">{{ data.num }}</span>
     </div>
     <div class="news-content">
         <div class="top">
             <span class="title"><a :href="data.url" target="_blank">{{ data.title }} </a></span>
-            <span class="host"> ({{ data.host }})</span>
+            <span class="host"> (<a :href="`http://${data.host}`" target="_blank">{{ data.host }}</a>)</span>
         </div>
         <div class="bottom">
-            <span class="meta">{{ timeElapsed(data.timestamp) }} by <a href="#">{{ data.author }}</a> | {{ data.comments }} comment{{ data.comments !== 1 ? 's' : ''}}</span>
+            <span class="meta">{{ timeElapsed(data.timestamp) }} by <a :href="data.authorURL" target="_blank">{{ data.author }}</a> |
+                <a :href="data.idURL" target="_blank">{{ data.comments }} comment{{ data.comments !== 1 ? 's' : ''}}</a></span>
         </div>
     </div>
     <div class="news-karma">
-        <span class="karma-number">{{ data.points }}</span>
+        <span class="karma-number"><a :href="data.idURL" target="_blank">{{ data.points }}</a></span>
     </div>
 </div>

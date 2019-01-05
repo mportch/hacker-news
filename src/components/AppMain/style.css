@@ -1,7 +1,8 @@
 #app {
-    background-color: whitesmoke;
-    font-family: Avenir,Helvetica,Arial,sans-serif;
+    background-color: rgb(250,250,250);
+    font-family: Avenir, Helvetica, Arial, sans-serif;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
 }
 
 .news-container {
@@ -13,6 +14,7 @@
 .header-items {
     display: flex;
     margin: 0 auto;
+    overflow: visible !important;
     width: 70%;
     max-width: 1200px;
 }
@@ -25,8 +27,4 @@
 
 .news-items {
     background-color: white;
-}
-
-.fv-footer {
-    margin-top: 30px;
 }

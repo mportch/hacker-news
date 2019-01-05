@@ -1,7 +1,5 @@
 export default {
     activeStory: null,
-    activeTab: 'top',
-    page: 0,
-    query: '',
+    pages: 0,
     stories: []
 };

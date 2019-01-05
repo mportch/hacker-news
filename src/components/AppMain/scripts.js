@@ -7,12 +7,12 @@ export default {
         NewsItem
     },
     computed: {
-        ...mapState('main', ['stories']),
+        ...mapState('main', ['pages', 'stories']),
     },
     data () {
         return {
-            page: 0,
-            pages: undefined,
+            page: 1,
+            query: '',
             tab: 0,
             timeframe: 0,
             timeframes: [
@@ -40,29 +40,29 @@ export default {
         }
     },
     watch: {
-        page: function () {
-            this.updateStories();
-        },
         tab: function () {
-            this.updateStories();
+            this.query = '';
+            this.updateStories(1);
         },
         timeframe: function () {
-            this.updateStories();
+            this.updateStories(1);
         }
     },
     methods: {
-        updatePage(page) {
-            this.page = page - 1;
+        submitQuery() {
+            this.updateStories(1);
         },
-        updateStories() {
+        updateStories(page) {
+            this.page = page;
             this.$store.dispatch('main/updateStories', {
                 page: this.page,
+                query: this.query,
                 tab: this.tab,
-                timeframe: this.timeframe
+                timeframe: this.tab === 0 ? this.timeframe : 4
             });
         }
     },
     mounted() {
-        this.updateStories();
+        this.updateStories(1);
     }
 }

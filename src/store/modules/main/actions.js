@@ -18,15 +18,18 @@ export const updateStories = ({ commit }, obj) => {
         4: 0
     };
     API.get(
-        `${endpointLUT[obj.tab]}?tags=story&numericFilters=created_at_i>${timeframeLUT[obj.timeframe]}&page=${obj.page}`)
+        `${endpointLUT[obj.tab]}?query=${obj.query}&tags=story&numericFilters=created_at_i>${timeframeLUT[obj.timeframe]}&page=${obj.page - 1}`)
     .then((response) => {
         const hits = response.data.hits;
         let stories = [];
         for (let i = 0; i < hits.length; i += 1) {
             stories.push({
-                id: obj.page * 20 + i + 1,
+                num: (obj.page - 1) * 20 + i + 1,
+                id: hits[i].objectID,
+                idURL: `https://news.ycombinator.com/item?id=${hits[i].objectID}`,
                 title: hits[i].title,
                 author: hits[i].author,
+                authorURL: `https://news.ycombinator.com/user?id=${hits[i].author}`,
                 comments: hits[i].num_comments,
                 timestamp: hits[i].created_at_i,
                 url: hits[i].url ? hits[i].url : `https://news.ycombinator.com/item?id=${hits[i].objectID}`,
@@ -34,6 +37,9 @@ export const updateStories = ({ commit }, obj) => {
                 points: hits[i].points
             })
         }
+        commit(types.UPDATE_PAGES, {
+            pages: response.data.nbPages,
+        });
         commit(types.UPDATE_STORIES, {
             stories,
         });

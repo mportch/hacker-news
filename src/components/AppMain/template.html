@@ -5,7 +5,7 @@
                 <fvButton :class="`${tab === 0 ? 'fv-bg-primary' : ''} fv-size-sm`" @click="tab = 0">Top</fvButton>
                 <fvButton :class="`${tab === 1 ? 'fv-bg-primary' : ''} fv-size-sm`" @click="tab = 1">New</fvButton>
                 <span class="fv-padding-start" />
-                <fvInput class="fv-size-sm fv-grow" placeholder="Search stories..."></fvInput>
+                <fvInput class="fv-size-sm fv-grow" v-model="query" placeholder="Search stories..." @keyup.enter.native="submitQuery"></fvInput>
                 <span class="fv-padding-start" />
                 <div class="timeframe-buttons" v-if="tab === 0">
                     <fvButton :class="`${timeframe === 0 ? 'fv-bg-info' : ''} fv-size-sm`" @click="timeframe = 0">{{ timeframes[0].text }}</fvButton>
@@ -15,15 +15,15 @@
                     <fvButton :class="`${timeframe === 4 ? 'fv-bg-info' : ''} fv-size-sm`" @click="timeframe = 4">{{ timeframes[4].text }}</fvButton>
                     <span class="fv-padding-start" />
                 </div>
-                <fvButton class="fv-size-sm" @click="updateStories"><fa icon="redo" /></fvButton>
+                <fvButton class="fv-size-sm" @click="updateStories(page)"><fa icon="redo" /></fvButton>
             </div>
         </fvHeader>
         <div class="news-container">
             <div class="news-items">
                 <news-item v-for="story in stories" :data="story" :key="story.id"></news-item>
             </div>
-            <div class="news-controls fv-padding fv-text-center">
-                <fvPagination class="fv-size-sm" v-model="pages" @input="updatePage" />
+            <div class="news-controls fv-padding fv-text-center" v-if="stories.length > 0">
+                <fvPagination class="fv-size-sm" :total="pages" :value="page" @input="updateStories" />
             </div>
         </div>
     </fvContent>
