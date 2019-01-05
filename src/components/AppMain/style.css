@@ -6,17 +6,18 @@
 }
 
 .news-container {
-    width: 70%;
-    max-width: 1200px;
+    width: 1000px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
 .header-items {
     display: flex;
     margin: 0 auto;
+    padding-left: 10px;
     overflow: visible !important;
-    width: 70%;
-    max-width: 1200px;
+    width: 1000px;
+    max-width: 1000px;
 }
 
 .news-params {
@@ -27,4 +28,30 @@
 
 .news-items {
     background-color: white;
+}
+
+@media only screen and (max-width: 1000px) {
+    .news-container {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .news-karma {
+        display: none;
+    }
+
+    .timeframe-buttons {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    input {
+        display: none;
+    }
+
+    #refresh-button {
+        margin-left: auto;
+    }
 }

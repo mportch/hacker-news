@@ -13,7 +13,7 @@ npm run build
 mv dist docs
 
 # if you are deploying to a custom domain
-# echo 'www.example.com' > CNAME
+echo "news.portch.me" > docs/CNAME
 
 cp favicon.ico index-build.html docs
 mv docs/index-build.html docs/index.html

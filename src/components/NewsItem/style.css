@@ -25,28 +25,29 @@
     min-width: 50px;
 }
 
-.top {
-    height: 24px;
-    line-height: 24px;
-}
-
-.bottom {
-    font-size: 12px;
-    line-height: 18px;
-}
-
 .title {
     font-size: 18px;
     font-weight: 600;
-    vertical-align: middle;
+    line-height: 18px;
 }
 
 .host {
     font-size: 12px;
     font-weight: 300;
-    vertical-align: middle;
 }
 
 .meta {
+    font-size: 12px;
     font-weight: 300;
+    line-height: 12px;
+}
+
+@media only screen and (max-width: 800px) {
+    .news-karma {
+        display: none;
+    }
+
+    .top {
+        padding-right: 5px;
+    }
 }
